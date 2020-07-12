@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjsxt.mapper.UserMapper">
+
+
+    <resultMap id="tea" type="Teacher">
+        <id property="tid" column="tid" ></id>
+        <result property="tName" column="tname"></result>
+        <result property="tAge" column="tage"></result>
+        <collection property="list" ofType="Student">
+            <id property="sid" column="sid" ></id>
+            <result property="tid"  column="tid"></result>
+            <result property="stAge"  column="age"></result>
+            <result property="stName"  column="sname"></result>
+        </collection>
+    </resultMap>
+    <select id="selectTea" resultMap="tea">
+        select * from teacher t inner join stu s on t.tid=s.tid
+    </select>
+
+    <resultMap id="stu" type="student">
+        <id property="sid" column="sid" ></id>
+        <result property="tid"  column="tid"></result>
+        <result property="stAge"  column="stAge"></result>
+        <result property="stName"  column="stName"></result>
+        <association property="teacher" javaType="teacher">
+            <id property="tid" column="tid" ></id>
+            <result property="tName" column="tname"></result>
+            <result property="tAge" column="tage"></result>
+        </association>
+    </resultMap>
+    <select id="selectStu" resultMap="stu">
+        select * from stu s inner join teacher t on s.tid=t.tid where s.tid=#{sid}
+    </select>
+
+    <select id="select1" resultType="student">
+        select * from stu where sid=#{sid}
+
+    </select>
+
+    <select id="select2" resultType="student">
+        select * from stu <include refid="s"></include>
+
+    </select>
+    <sql id="s" >
+        where sid=#{sid}
+    </sql>
+
+   <delete id="delete1">
+       delete from stu where
+       <choose>
+           <when test="sid !=null">
+               sid=#{sid}
+           </when>
+           <otherwise>
+               sid=3
+           </otherwise>
+       </choose>
+   </delete>
+
+    <insert id="insert1">
+        insert into stu (stName,stAge,sid,tid,adddate) values(#{param1.stName},#{param1.stAge},#{param1.sid},#{param1.tid},#{param2});
+    </insert>
+
+    <update id="update1">
+        update stu
+        <if test="student.tid !=null and student.tid !=''">
+            <set>
+                tid=#{student.tid} where sid=3
+            </set>
+        </if>
+
+    </update>
+
+    <select id="selectAll" resultMap="stu">
+        select * from stu
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
