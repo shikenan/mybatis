@@ -76,6 +76,15 @@
         select * from stu
     </select>
 
+    <insert id="insert2">
+    <selectKey keyProperty="sid" keyColumn="sid" resultType="Integer" order="AFTER">
+        select @@identity
+    </selectKey>
+
+    insert into stu (stName,stAge,tid) values(#{stName},#{stAge},#{tid});
+
+    </insert>
+
 
 
 

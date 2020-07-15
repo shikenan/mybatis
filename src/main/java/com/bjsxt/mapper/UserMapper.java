@@ -22,6 +22,7 @@ public interface UserMapper {
 
     int update1(@Param("student") Student student);
     List<Student> selectAll();
+    int insert2(Student student);
 
 
 
