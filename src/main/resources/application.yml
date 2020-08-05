@@ -1,8 +1,9 @@
 server:
   port: 8080
-#自己的
-#水电费第三方
+#测试时
 #mybatis配置
+
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/bz_shop?characterEncoding=utf8
