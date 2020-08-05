@@ -1,6 +1,7 @@
 server:
   port: 8080
 #自己的
+#水电费第三方
 #mybatis配置
 spring:
   datasource:
