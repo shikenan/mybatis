@@ -12,10 +12,11 @@ import java.util.List;
 @RestController
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserService service;
 
     @RequestMapping("/show")
     public List<Teacher> selectAll(){
-        return userService.selectTea();
+        return service.selectTea();
     }
+
 }
