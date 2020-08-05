@@ -1,6 +1,6 @@
 server:
   port: 8080
-#测试时
+#测试时奥术大师多
 #mybatis配置
 spring:
   datasource:
