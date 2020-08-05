@@ -1,6 +1,6 @@
 server:
   port: 8080
-
+#自己的
 #mybatis配置
 spring:
   datasource:
